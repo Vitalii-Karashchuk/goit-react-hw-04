@@ -1,7 +1,10 @@
-export default function LoadMoreBtn() {
+export default function LoadMoreBtn({ onClick }) {
+  const handleClick = () => {
+    onClick();
+  };
   return (
     <div>
-      <button>Load more</button>
+      <button onClick={handleClick}>Load more</button>
     </div>
   );
 }

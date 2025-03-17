@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 // import css from '../App/App.module.css';
 import SearchBar from '../SearchBar/SearchBar';
@@ -13,18 +13,40 @@ export default function App() {
   const [photos, setPhotos] = useState([]);
   const [isLoader, setIsLoader] = useState(false);
   const [error, setError] = useState(false);
-  const onSubmit = async (newSearch) => {
-    try {
-      setError(false);
-      setIsLoader(true);
-      setPhotos([]);
-      const data = await fetchImg(newSearch);
-      setPhotos(data);
-    } catch (error) {
-      setError(true);
-    } finally {
-      setIsLoader(false);
+  const [searchData, setSearchData] = useState('');
+  const [page, setPage] = useState(1);
+
+  const onSubmit = (newSearch) => {
+    setSearchData(newSearch);
+    setPage(1);
+    setPhotos([]);
+  };
+
+  useEffect(() => {
+    if (searchData === '') {
+      return;
     }
+
+    async function getData() {
+      try {
+        setError(false);
+        setIsLoader(true);
+        setPhotos([]);
+        const data = await fetchImg(searchData, page);
+        setPhotos((prevPhotos) => {
+          return [...prevPhotos, ...data];
+        });
+      } catch (error) {
+        setError(true);
+      } finally {
+        setIsLoader(false);
+      }
+    }
+    getData();
+  }, [searchData, page]);
+
+  const onClick = () => {
+    setPage(page + 1);
   };
 
   return (
@@ -34,7 +56,7 @@ export default function App() {
       <Toaster position="top-right" />
       <ImageGallary items={photos} />
       {isLoader && <Loader />}
-      <LoadMoreBtn />
+      {photos.length > 0 && <LoadMoreBtn onClick={onClick} />}
     </>
   );
 }
