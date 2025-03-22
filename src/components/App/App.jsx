@@ -17,9 +17,9 @@ export default function App() {
   const [error, setError] = useState(false);
   const [searchData, setSearchData] = useState('');
   const [page, setPage] = useState(1);
-  const [modalIsOpen, setmodalIsOpen] = useState(false);
+  // const [modalIsOpen, setmodalIsOpen] = useState(false);
 
-  Modal.setAppElement('#yourAppElement');
+  // Modal.setAppElement('#yourAppElement');
 
   const onSubmit = (newSearch) => {
     setSearchData(newSearch);
@@ -53,18 +53,18 @@ export default function App() {
     setPage(page + 1);
   };
 
-  function openModal() {
-    setmodalIsOpen(true);
-  }
+  // function openModal() {
+  //   setmodalIsOpen(true);
+  // }
 
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = '#f00';
-  }
+  // function afterOpenModal() {
+  //   // references are now sync'd and can be accessed.
+  //   subtitle.style.color = '#f00';
+  // }
 
-  function closeModal() {
-    setmodalIsOpen(false);
-  }
+  // function closeModal() {
+  //   setmodalIsOpen(false);
+  // }
 
   return (
     <>
@@ -74,13 +74,14 @@ export default function App() {
       {isLoader && <Loader />}
       {photos.length > 0 && isLoader && <LoadMoreBtn onClick={onClick} />}
       {error && <ErrorMessage />}
-      <ImageModal
+      <ImageModal />
+      {/* <ImageModal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Example Modal"
-      />
+      /> */}
       ;
     </>
   );

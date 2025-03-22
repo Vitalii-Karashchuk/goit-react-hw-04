@@ -1,7 +1,7 @@
 // regular версію для модального вікна
 import Modal from 'react-modal';
 
-export default function ImageModal(regular, alt) {
+export default function ImageModal({ regular, alt }) {
   const customStyles = {
     content: {
       top: '50%',

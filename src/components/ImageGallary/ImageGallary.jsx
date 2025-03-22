@@ -1,4 +1,5 @@
-// import ImageCard from '../ImageCard/ImageCard';
+import ImageCard from '../ImageCard/ImageCard';
+import ImageModal from '../ImageModal/ImageModal';
 import css from '../ImageGallary/ImageGallary.module.css';
 //
 export default function ImageGallary({ items }) {
@@ -8,8 +9,8 @@ export default function ImageGallary({ items }) {
         {items.map((item) => (
           <li key={item.id}>
             <div>
-              <img className={css.img} src={item.urls.small} alt={item.slug} />
-              {/* <ImageCard small={item.urls.small} alt={item.slug} /> */}
+              <ImageCard small={item.urls.small} alt={item.slug} />
+              <ImageModal regular={item.urls.regular} alt={item.slug} />
             </div>
           </li>
         ))}
