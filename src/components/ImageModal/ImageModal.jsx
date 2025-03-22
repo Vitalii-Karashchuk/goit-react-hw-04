@@ -1,7 +1,8 @@
-// regular версію для модального вікна
 import Modal from 'react-modal';
 
-export default function ImageModal({ regular, alt }) {
+Modal.setAppElement('#root');
+
+export default function ImageModal({ regular, alt, isOpen, onRequestClose }) {
   const customStyles = {
     content: {
       top: '50%',
@@ -10,12 +11,13 @@ export default function ImageModal({ regular, alt }) {
       bottom: 'auto',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
+      background: ' #312e2e',
     },
   };
 
   return (
-    <div>
-      <img src={regular} alt={alt} />
-    </div>
+    <Modal style={customStyles} isOpen={isOpen} onRequestClose={onRequestClose}>
+      <div>{regular && <img src={regular} alt={alt} />}</div>
+    </Modal>
   );
 }

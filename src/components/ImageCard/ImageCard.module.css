@@ -1,0 +1,14 @@
+
+.imgCard {
+    width: 100%;;
+    height: 250px;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.imgCard:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}

@@ -7,7 +7,7 @@ export default defineConfig({
    build: {
     sourcemap: true,
   },
-    server: {
-    open: true,
-  },
+  //   server: {
+  //   open: true,
+  // },
 })

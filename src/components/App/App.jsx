@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
-import Modal from 'react-modal';
+// import Modal from 'react-modal';
 // import css from '../App/App.module.css';
 import SearchBar from '../SearchBar/SearchBar';
 import ImageGallary from '../ImageGallary/ImageGallary';
@@ -17,9 +17,8 @@ export default function App() {
   const [error, setError] = useState(false);
   const [searchData, setSearchData] = useState('');
   const [page, setPage] = useState(1);
-  // const [modalIsOpen, setmodalIsOpen] = useState(false);
-
-  // Modal.setAppElement('#yourAppElement');
+  const [modalIsOpen, setmodalIsOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const onSubmit = (newSearch) => {
     setSearchData(newSearch);
@@ -53,35 +52,30 @@ export default function App() {
     setPage(page + 1);
   };
 
-  // function openModal() {
-  //   setmodalIsOpen(true);
-  // }
+  function openModal(image) {
+    setSelectedImage(image);
+    setmodalIsOpen(true);
+  }
 
-  // function afterOpenModal() {
-  //   // references are now sync'd and can be accessed.
-  //   subtitle.style.color = '#f00';
-  // }
-
-  // function closeModal() {
-  //   setmodalIsOpen(false);
-  // }
+  function closeModal() {
+    setmodalIsOpen(false);
+    setSelectedImage(null);
+  }
 
   return (
     <>
       <SearchBar onSubmit={onSubmit} />
       <Toaster position="top-right" />
-      <ImageGallary items={photos} />
+      <ImageGallary items={photos} onOpen={openModal} />
       {isLoader && <Loader />}
-      {photos.length > 0 && isLoader && <LoadMoreBtn onClick={onClick} />}
+      {photos.length > 0 && !isLoader && <LoadMoreBtn onClick={onClick} />}
       {error && <ErrorMessage />}
-      <ImageModal />
-      {/* <ImageModal
+      <ImageModal
         isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Example Modal"
-      /> */}
+        regular={selectedImage?.urls.regular}
+        alt={selectedImage?.slug}
+      />
       ;
     </>
   );
