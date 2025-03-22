@@ -9,7 +9,7 @@ export default function ImageGallary({ items }) {
           <li key={item.id}>
             <div>
               <img className={css.img} src={item.urls.small} alt={item.slug} />
-              {/* <ImageCard regular={item.urls.regular} alt={item.slug} /> */}
+              {/* <ImageCard small={item.urls.small} alt={item.slug} /> */}
             </div>
           </li>
         ))}

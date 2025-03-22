@@ -1,7 +1,7 @@
-export default function ErrorMessage(error) {
+export default function ErrorMessage() {
   return (
     <div>
-      <p>Error loader</p>
+      <p>An error occurred! Please reload the page!</p>
     </div>
   );
 }
