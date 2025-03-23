@@ -1,10 +1,13 @@
+import css from '../LoadMoreBtn/LoadMoreBtn.module.css';
 export default function LoadMoreBtn({ onClick }) {
   const handleClick = () => {
     onClick();
   };
   return (
-    <div>
-      <button onClick={handleClick}>Load more</button>
+    <div className={css.btn}>
+      <button className={css.btnLoadMore} onClick={handleClick}>
+        Load more
+      </button>
     </div>
   );
 }

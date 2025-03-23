@@ -22,9 +22,10 @@ export default function SearchBar({ onSubmit }) {
 
   return (
     <div>
-      <header>
-        <form className={css.inputSearch} onSubmit={handleSubmit}>
+      <header className={css.header}>
+        <form className={css.inputForm} onSubmit={handleSubmit}>
           <input
+            className={css.inputSearch}
             ref={inputRef}
             name="query"
             type="text"
@@ -32,7 +33,9 @@ export default function SearchBar({ onSubmit }) {
             autoFocus
             placeholder="Search images and photos"
           />
-          <button type="submit">Search</button>
+          <button className={css.btnHeader} type="submit">
+            Search
+          </button>
         </form>
       </header>
     </div>

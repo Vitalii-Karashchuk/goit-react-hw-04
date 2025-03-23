@@ -1,0 +1,11 @@
+.btnLoadMore{
+    padding: 10px;
+    background-color: #5353e7;
+    color: white; 
+}
+
+.btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
